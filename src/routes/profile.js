@@ -1,5 +1,10 @@
 import { h, Component } from 'preact';
 import styled from 'styled-components';
+import { connect } from 'redux-zero/preact';
+
+import actions from '../actions';
+
+const mapToProps = ({ count }) => ({ count });
 
 const Wrapper = styled.div`
   padding: 56px 20px;
@@ -7,10 +12,9 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-export default class Profile extends Component {
+class Profile extends Component {
   state = {
-    time: Date.now(),
-    count: 10
+    time: Date.now()
   };
 
   // gets called when this route is navigated to
@@ -29,12 +33,8 @@ export default class Profile extends Component {
     this.setState({ time: Date.now() });
   };
 
-  increment = () => {
-    this.setState({ count: this.state.count+1 });
-  };
-
   // Note: `user` comes from the URL, courtesy of our router
-  render({ user }, { time, count }) {
+  render({ user, count, increment }, { time }) {
     return (
       <Wrapper>
         <h1>Profile: {user}</h1>
@@ -43,7 +43,7 @@ export default class Profile extends Component {
         <div>Current time: {new Date(time).toLocaleString()}</div>
 
         <p>
-          <button onClick={this.increment}>Click Me</button>
+          <button onClick={increment}>Click Me</button>
           {' '}
           Clicked {count} times.
         </p>
@@ -51,3 +51,5 @@ export default class Profile extends Component {
     );
   }
 }
+
+export default connect(mapToProps, actions)(Profile);
