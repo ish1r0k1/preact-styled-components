@@ -17,6 +17,11 @@ class Profile extends Component {
     time: Date.now()
   };
 
+  // update the current time
+  updateTime = () => {
+    this.setState({ time: Date.now() });
+  };
+
   // gets called when this route is navigated to
   componentDidMount() {
     // start a timer for the clock:
@@ -27,11 +32,6 @@ class Profile extends Component {
   componentWillUnmount() {
     clearInterval(this.timer);
   }
-
-  // update the current time
-  updateTime = () => {
-    this.setState({ time: Date.now() });
-  };
 
   // Note: `user` comes from the URL, courtesy of our router
   render({ user, count, increment }, { time }) {

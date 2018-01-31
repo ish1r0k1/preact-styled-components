@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
 import { Link } from 'preact-router/match';
 import styled from 'styled-components';
 
@@ -55,17 +55,15 @@ const NavItem = styled(Link).attrs({
   }
 `;
 
-export default class Header extends Component {
-  render() {
-    return (
-      <Wrapper>
-        <Title>Preact App</Title>
-        <Nav>
-          <NavItem href="/">Home</NavItem>
-          <NavItem href="/profile">Me</NavItem>
-          <NavItem href="/profile/john">John</NavItem>
-        </Nav>
-      </Wrapper>
-    );
-  }
-}
+const Header = () => (
+  <Wrapper>
+    <Title>Preact App</Title>
+    <Nav>
+      <NavItem href="/">Home</NavItem>
+      <NavItem href="/profile">Me</NavItem>
+      <NavItem href="/profile/john">John</NavItem>
+    </Nav>
+  </Wrapper>
+);
+
+export default Header;
